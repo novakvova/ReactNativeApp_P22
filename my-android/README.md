@@ -15,6 +15,12 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
    npx expo start
    ```
+   
+## Install React native tailwindcss
+```
+npm install nativewind react-native-reanimated@~3.17.4 react-native-safe-area-context@5.4.0
+npm install --dev tailwindcss@^3.4.17 prettier-plugin-tailwindcss@^0.5.11
+```
 
 In the output, you'll find options to open the app in a
 
