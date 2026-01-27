@@ -13,7 +13,10 @@ export default function RootLayout() {
         <>
             <SafeAreaProvider>
                 <StatusBar barStyle={isDark ? "light-content" : "dark-content"} />
-                <Stack screenOptions={{ headerShown: false }} />
+                <Stack>
+                    <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+                    <Stack.Screen name="+not-found" />
+                </Stack>
             </SafeAreaProvider>
         </>
     );
