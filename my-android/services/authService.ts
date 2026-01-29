@@ -1,13 +1,13 @@
 import {createApi} from "@reduxjs/toolkit/query/react";
 import {IAuthResponse} from "@/types/auth/IAuthResponse";
+import {IRegister} from "@/types/auth/IRegister";
 import {createBaseQuery} from "@/utils/createBaseQuery";
 import {ILogin} from "@/types/auth/ILogin";
-import {IRegister} from "@/types/auth/IRegister";
+import {serialize} from "object-to-formdata";
 
 export const authService = createApi({
-    reducerPath: 'api/account',
-    baseQuery: createBaseQuery('Account'),
-    tagTypes: ['Account', 'AccountPassword'],
+    reducerPath: 'api/auth',
+    baseQuery: createBaseQuery('Auth'),
     endpoints: (builder) => ({
         login: builder.mutation<IAuthResponse, ILogin>({
             query: (credentials) => ({
@@ -20,7 +20,7 @@ export const authService = createApi({
 
         register: builder.mutation<IAuthResponse, IRegister>({
             query: (credentials) => {
-                const formData =  null; //serialize(credentials);
+                const formData =  serialize(credentials);
 
                 return {
                     url: 'register',
