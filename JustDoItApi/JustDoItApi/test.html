@@ -8,6 +8,8 @@
     <button onclick="join()">Join Chat</button>
     <button onclick="send()">Send</button>
 
+    <input type="text" name="message" id="message" value="" />
+
     <pre id="log"></pre>
 
     <script>
@@ -20,7 +22,7 @@
         async function connect() {
             connection = new signalR.HubConnectionBuilder()
                 .withUrl("http://localhost:5240/hubs/chat", {
-                    accessTokenFactory: () => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwibmFtZSI6ItCQ0LTQvNGW0L0g0KHQuNGB0YLQtdC80L3QuNC5IiwiaW1hZ2UiOiJ4aGFpdTI1dy5wem8ud2VicCIsInJvbGUiOiJBZG1pbiIsImV4cCI6MTc2OTg0MTM2NH0.l24zmQIkjgzk8LLzJmHTSjoIaFfAv7BZC7FeC30z5Fo"
+                    accessTokenFactory: () => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwibmFtZSI6ItCQ0LTQvNGW0L0g0KHQuNGB0YLQtdC80L3QuNC5IiwiaW1hZ2UiOiJnMmx1ZWRvZS50djAud2VicCIsInJvbGUiOiJBZG1pbiIsImV4cCI6MTc2OTg4NzcxN30.zBqfvGHMJRyF-Fp7SpMgDLXRfJnfxulaqRaIYdR-0ac"
                 })
                 .withAutomaticReconnect()
                 .build();
@@ -34,14 +36,15 @@
         }
 
         async function join() {
-            await connection.invoke("JoinChat", 2);
+            await connection.invoke("JoinChat", 1);
             log("👥 Joined chat");
         }
 
         async function send() {
+            const text = document.getElementById("message").value;
             await connection.invoke("SendMessage", {
-                chatId: 2,
-                message: "Привіт з браузера"
+                chatId: 1,
+                message: text
             });
         }
     </script>

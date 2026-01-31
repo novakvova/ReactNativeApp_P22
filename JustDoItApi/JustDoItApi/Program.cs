@@ -1,5 +1,6 @@
 using JustDoItApi.Data;
 using JustDoItApi.Entities.Identity;
+using JustDoItApi.Hubs;
 using JustDoItApi.Interfaces;
 using JustDoItApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -148,6 +149,8 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = $"/{dir}"
 });
 
+app.UseCors("AllowSignalR");
+
 app.MapOpenApi();
 
 app.UseSwaggerUI(options =>
@@ -160,6 +163,8 @@ app.UseSwaggerUI(options =>
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHub<ChatHub>("/hubs/chat");
 
 app.MapControllers();
 
