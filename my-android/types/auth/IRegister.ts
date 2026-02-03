@@ -1,4 +1,4 @@
-import {IImageFile} from "@/types/common/IImageFile";
+import IImageFile from "@/types/common/IImageFile";
 
 export interface IRegister {
     firstName: string;

@@ -1,0 +1,162 @@
+[
+  {
+    "Email": "admin@example.com",
+    "FirstName": "����",
+    "LastName": "���������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Admin123!",
+    "Roles": [ "Admin" ]
+  },
+  {
+    "Email": "ivan@example.com",
+    "FirstName": "����",
+    "LastName": "�������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "bb123456",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "olena@example.com",
+    "FirstName": "�����",
+    "LastName": "���������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "password",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "maria.k@example.com",
+    "FirstName": "����",
+    "LastName": "������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Maria2024!",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "andriy.l@example.com",
+    "FirstName": "�����",
+    "LastName": "������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Andriy$123",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "natalia.z@example.com",
+    "FirstName": "������",
+    "LastName": "�������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "NataPass1!",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "dmytro.p@example.com",
+    "FirstName": "������",
+    "LastName": "��������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Dmytro987#",
+    "Roles": [ "Admin" ]
+  },
+  {
+    "Email": "oksana.m@example.com",
+    "FirstName": "������",
+    "LastName": "�������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Oksana321*",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "yuriy.k@example.com",
+    "FirstName": "���",
+    "LastName": "���������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "YuraK_2023",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "iryna.v@example.com",
+    "FirstName": "�����",
+    "LastName": "���������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Iryna*pass9",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "taras.r@example.com",
+    "FirstName": "�����",
+    "LastName": "�������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "TarasR123",
+    "Roles": [ "Admin" ]
+  },
+  {
+    "Email": "halyna.b@example.com",
+    "FirstName": "������",
+    "LastName": "�����",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Halyna#456",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "serhiy.z@example.com",
+    "FirstName": "�����",
+    "LastName": "���������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Serhiy!789",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "lyudmyla.h@example.com",
+    "FirstName": "�������",
+    "LastName": "���䳺���",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Luda2022!",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "oleksandr.d@example.com",
+    "FirstName": "���������",
+    "LastName": "�������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Olek1234@",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "valentyna.s@example.com",
+    "FirstName": "���������",
+    "LastName": "�������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Valya*pass",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "roman.k@example.com",
+    "FirstName": "�����",
+    "LastName": "�����",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Roman+321",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "yana.t@example.com",
+    "FirstName": "���",
+    "LastName": "���������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "YanaTpass1",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "oleksiy.n@example.com",
+    "FirstName": "������",
+    "LastName": "ͳ���",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Oleksey77!",
+    "Roles": [ "User" ]
+  },
+  {
+    "Email": "kateryna.p@example.com",
+    "FirstName": "��������",
+    "LastName": "����������",
+    "Image": "https://thispersondoesnotexist.com",
+    "Password": "Katya#pass123",
+    "Roles": [ "User" ]
+  }
+]

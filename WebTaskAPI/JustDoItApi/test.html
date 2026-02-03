@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+</head>
+<body>
+    <button onclick="connect()">Connect</button>
+    <button onclick="join()">Join Chat</button>
+    <button onclick="send()">Send</button>
+
+    <pre id="log"></pre>
+
+    <script>
+        let connection;
+
+        function log(msg) {
+            document.getElementById("log").innerText += msg + "\n";
+        }
+
+        async function connect() {
+            connection = new signalR.HubConnectionBuilder()
+                .withUrl("http://localhost:5240/hubs/chat", {
+                    accessTokenFactory: () => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwibmFtZSI6Iu-_ve-_ve-_ve-_vSDvv73vv73vv73vv73vv73vv73vv73vv73vv70iLCJpbWFnZSI6ImcwMDNqaDJ5LmRkei53ZWJwIiwicm9sZSI6IkFkbWluIiwiZXhwIjoxNzY5ODg3OTMxfQ.NJFLSr2pGBIHZ3e_GBycggWvqtZTcWBLU24VEGrba-E"
+                })
+                .withAutomaticReconnect()
+                .build();
+
+            connection.on("ReceiveMessage", msg => {
+                log("📩 " + JSON.stringify(msg));
+            });
+
+            await connection.start();
+            log("✅ Connected");
+        }
+
+        async function join() {
+            await connection.invoke("JoinChat", 1);
+            log("👥 Joined chat");
+        }
+
+        async function send() {
+            await connection.invoke("SendMessage", {
+                chatId: 1,
+                message: "Привіт з браузера"
+            });
+        }
+    </script>
+</body>
+</html>

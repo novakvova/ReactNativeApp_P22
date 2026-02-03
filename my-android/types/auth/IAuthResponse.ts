@@ -1,4 +1,3 @@
-export interface IAuthResponse
-{
+export interface IAuthResponse {
     token: string;
 }
