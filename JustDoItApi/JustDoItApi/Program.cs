@@ -5,6 +5,7 @@ using JustDoItApi.Interfaces;
 using JustDoItApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -117,6 +118,16 @@ builder.Services.AddOpenApi(options =>
 
         document.SetReferenceHostDocument();
 
+
+        document.Servers = new List<OpenApiServer>
+        {
+            new OpenApiServer
+            {
+                Url = "https://bolto.itstep.click",
+                Description = "Production server"
+            }
+        };
+
         return Task.CompletedTask;
     });
 });
@@ -139,6 +150,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+
 var dir = builder.Configuration["ImagesDir"];
 string path = Path.Combine(Directory.GetCurrentDirectory(), dir);
 Directory.CreateDirectory(path);
@@ -159,7 +171,7 @@ app.UseSwaggerUI(options =>
     options.OAuthUsePkce();
 });
 
-//app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -30,7 +30,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Production
       ConnectionStrings__DefaultConnection: "Host=db;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}"
     ports:
-      - "127.0.0.1:3589:8080"
+      - "3589:8080"
     depends_on:
       - db
     networks:

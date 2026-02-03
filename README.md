@@ -1,11 +1,8 @@
 # Option ngixn and ssl sertificate
 ``` 
 server {
-
     server_name bolto.itstep.click;
-
-    client_max_body_size 6000M;
-
+    client_max_body_size 200M;
     location / {
         proxy_pass http://127.0.0.1:3589;
         proxy_http_version 1.1;
