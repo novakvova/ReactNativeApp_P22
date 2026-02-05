@@ -1,9 +1,8 @@
 ﻿using JustDoItApi.Entities.Identity;
 
-namespace JustDoItApi.Interfaces
+namespace JustDoItApi.Interfaces;
+
+public interface IJWTTokenService
 {
-    public interface IJwtTokenService
-    {
-        Task<string> CreateTokenAsync(UserEntity user);
-    }
+    Task<string> CreateTokenAsync(UserEntity user);
 }

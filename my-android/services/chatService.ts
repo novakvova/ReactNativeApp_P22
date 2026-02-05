@@ -1,36 +1,73 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {createBaseQuery} from "@/utils/createBaseQuery";
-import {IChatItem} from "@/types/сhat/IChatItem";
-import {IChatCreate} from "@/types/сhat/IChatCreate";
-import {IChatMessage} from "@/types/сhat/IChatMessage";
+import { createBaseQuery } from "@/utils/createBaseQuery";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import {IChatType} from "@/types/chat/IChatType";
+import {IUserShort} from "@/types/chat/IUserShort";
+import { IChatCreate } from "@/types/chat/IChatCreate";
+import {IChatListItem} from "@/types/chat/IChatListItem";
+import {IMessageItem} from "@/types/chat/IMessageItem";
+import {IChatEdit} from "@/types/chat/IChatEdit";
+import { IUserSearch } from "@/types/chat/IUserSearch";
 
 export const chatService = createApi({
-    reducerPath: 'api/chat',
-    baseQuery: createBaseQuery('Chats'),
-    tagTypes: ['Chats', 'Messages'],
-    endpoints: (builder) => ({
-        getMyChats: builder.query<IChatItem[], void>({
-            query: () => ({ url: '', method: 'GET' }),
-            providesTags: ['Chats']
+    reducerPath: "api/chats",
+    tagTypes: ["Chats", "Chat"],
+    baseQuery: createBaseQuery("chats"),
+    endpoints: builder => ({
+
+        getChatTypes: builder.query<IChatType[], void>({
+            query: () => "types",
+        }),
+
+        getUsers: builder.query<IUserShort[], IUserSearch>({
+            query: params => ({
+                url: "users",
+                params,
+            }),
+            providesTags: ["Chat"],
         }),
 
         createChat: builder.mutation<number, IChatCreate>({
-            query: (body) => ({ url: '', method: 'POST', body: body }),
-            invalidatesTags: ['Chats']
+            query: body => ({
+                url: "",
+                method: "POST",
+                body,
+            }),
+            invalidatesTags: ["Chats"],
         }),
 
-        getChatMessages: builder.query<IChatMessage[], number>({
-            query: (chatId) => ({
-                url: `${chatId}/messages`,
-                method: 'GET',
+        editChat: builder.mutation<void, IChatEdit>({
+            query: body => ({
+                url: "edit",
+                method: "PUT",
+                body,
             }),
-            keepUnusedDataFor: 0,
-        })
-    })
+            invalidatesTags: ["Chats", "Chat"],
+        }),
+
+        getMyChats: builder.query<IChatListItem[], void>({
+            query: () => "my",
+            providesTags: ["Chats"],
+        }),
+
+        getChatMessages: builder.query<IMessageItem[], number>({
+            query: chatId => `${chatId}/messages`
+        }),
+
+        amIAdmin: builder.query<boolean, number>({
+            query: chatId => ({
+                url: "am-i-admin",
+                params: { chatId },
+            }),
+        }),
+    }),
 });
 
 export const {
-    useGetMyChatsQuery,
+    useGetChatTypesQuery,
+    useGetUsersQuery,
     useCreateChatMutation,
-    useGetChatMessagesQuery
+    useEditChatMutation,
+    useGetMyChatsQuery,
+    useGetChatMessagesQuery,
+    useAmIAdminQuery,
 } = chatService;

@@ -2,63 +2,64 @@ using JustDoItApi.Interfaces;
 using JustDoItApi.Models.Zadachi;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-namespace JustDoItApi.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-[Authorize]
-public class ZadachiController(IZadachiService zadachiService) : ControllerBase
+namespace JustDoItApi.Controllers
 {
-
-    [HttpGet]
-    public async Task<IActionResult> Get()
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ZadachiController (IZadachiService zadachiService) : ControllerBase
     {
-        Thread.Sleep(2000);
-        var items = await zadachiService.GetAllAsync();
 
-        return Ok(items);
-    }
-
-    [HttpPost]
-    [Consumes("multipart/form-data")]
-    public async Task<IActionResult> Post([FromForm] ZadachaCreateModel model)
-    {
-        var res = await zadachiService.CreateZadachyAsync(model);
-        return Ok(res);
-    }
-
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(long id)
-    {
-        var res = await zadachiService.DeleteZadachyAsync(id);
-        if (!res)
+        [HttpGet()]
+        public async Task<IActionResult> Get()
         {
-            return NotFound();
-        }
-        return Ok();
-    }
+            var items = await zadachiService.GetAllAsync();
 
-    [HttpDelete("range")]
-    public async Task<IActionResult> DeleteRange([FromBody] List<long> ids)
-    {
-        var res = await zadachiService.DeleteRangeZadachiAsync(ids);
-        if (!res)
-        {
-            return NotFound();
+            return Ok(items);
         }
-        return Ok();
-    }
 
-    [HttpPut]
-    [Consumes("multipart/form-data")]
-    public async Task<IActionResult> Put([FromForm] ZadachaUpdateModel model)
-    {
-        var res = await zadachiService.UpdateZadachyAsync(model);
-        if (!res)
+        [HttpPost()]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Post([FromForm] ZadachaCreateModel model)
         {
-            return NotFound();
+            var res = await zadachiService.CreateZadachyAsync(model);
+            return Ok(res);
         }
-        return Ok();
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            var res = await zadachiService.DeleteZadachyAsync(id);
+            if (!res)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+
+        [HttpDelete("range")]
+        public async Task<IActionResult> DeleteRange([FromBody] List<long> ids)
+        {
+            var res = await zadachiService.DeleteRangeZadachiAsync(ids);
+            if (!res)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+
+        [HttpPut()]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Put([FromForm] ZadachaUpdateModel model)
+        {
+            var res = await zadachiService.UpdateZadachyAsync(model);
+            if (!res)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
     }
 }

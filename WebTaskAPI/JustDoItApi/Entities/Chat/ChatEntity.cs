@@ -1,11 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using JustDoItApi.Entities.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JustDoItApi.Entities.Chat;
-
-/// <summary>
-/// 
-/// </summary>
 
 [Table("tbl_chats")]
 public class ChatEntity : BaseEntity<long>

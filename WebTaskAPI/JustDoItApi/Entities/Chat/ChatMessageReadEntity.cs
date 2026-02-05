@@ -2,9 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JustDoItApi.Entities.Chat;
-/// <summary>
-/// хто прочитав яке повідомлення і коли
-/// </summary>
+
 [Table("tbl_chat_message_reads")]
 public class ChatMessageReadEntity
 {
@@ -16,3 +14,4 @@ public class ChatMessageReadEntity
 
     public DateTime ReadAt { get; set; } = DateTime.UtcNow;
 }
+

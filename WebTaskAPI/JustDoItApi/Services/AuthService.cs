@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 namespace JustDoItApi.Services;
 
 public class AuthService(
-    IJwtTokenService tokenService,
+    IJWTTokenService tokenService,
     UserManager<UserEntity> userManager,
     RoleManager<RoleEntity> roleManager,
     IMapper mapper,
@@ -55,7 +55,6 @@ public class AuthService(
         }
 
         await userManager.AddToRoleAsync(user, DefaultRole);
-
         return await tokenService.CreateTokenAsync(user);
     }
 }

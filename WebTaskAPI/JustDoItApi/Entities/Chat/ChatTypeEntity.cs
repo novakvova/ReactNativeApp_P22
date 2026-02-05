@@ -8,4 +8,3 @@ public class ChatTypeEntity : BaseEntity<long>
     public string TypeName { get; set; } = string.Empty;
     public virtual ICollection<ChatEntity>? Chats { get; set; }
 }
-

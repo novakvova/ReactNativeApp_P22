@@ -1,57 +1,58 @@
 import React from "react";
-import { View, Text, Pressable } from "react-native";
-import { Link, Stack } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
-import { useColorScheme } from "nativewind";
+import {
+    View,
+    Text,
+    StatusBar,
+    ScrollView,
+    KeyboardAvoidingView,
+    Platform,
+    TouchableOpacity,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 export default function NotFoundScreen() {
-    const { colorScheme } = useColorScheme();
-    const isDark = colorScheme === "dark";
-
     return (
-        <>
-            <SafeAreaView className="flex-1 bg-white dark:bg-slate-950">
-                <View className="flex-1 items-center justify-center px-6">
+        <View className="flex-1 bg-zinc-50 dark:bg-zinc-950">
+            <StatusBar barStyle="default" />
 
-                    <View className="w-20 h-20 bg-gray-100 dark:bg-slate-900 rounded-2xl items-center justify-center mb-6">
-                        <Ionicons
-                            name="alert-circle-outline"
-                            size={40}
-                            color={isDark ? "white" : "black"}
-                        />
-                    </View>
+            <SafeAreaView className="flex-1 px-6 py-12">
+                <KeyboardAvoidingView
+                    style={{ flex: 1 }}
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                >
+                    <ScrollView
+                        contentContainerStyle={{
+                            flexGrow: 1,
+                            justifyContent: "center",
+                        }}
+                        keyboardShouldPersistTaps="handled"
+                    >
+                        <View className="items-center mb-12">
+                            <Text className="text-5xl font-black text-zinc-900 dark:text-white tracking-tighter text-center">
+                                Щось пішло не так
+                            </Text>
 
-                    <Text className="text-3xl font-bold text-gray-900 dark:text-white text-center">
-                        Сторінку не знайдено
-                    </Text>
+                            <View className="h-[2px] w-12 bg-emerald-500 my-6 rounded-full" />
 
-                    <Text className="text-gray-500 dark:text-gray-400 mt-3 text-base text-center mb-10 px-4">
-                        Схоже, цей маршрут не існує або був переміщений.
-                    </Text>
+                            <Text className="text-zinc-500 dark:text-zinc-400 text-center text-lg leading-7 font-medium px-4">
+                                Сторінку не знайдено або маршрут недоступний
+                            </Text>
+                        </View>
 
-                    <Link href="/" asChild>
-                        <Pressable
-                            className="w-full bg-black dark:bg-white py-4 rounded-xl shadow-md active:opacity-90 active:scale-[0.98]"
+                        {/* КНОПКА НА ГОЛОВНУ */}
+                        <TouchableOpacity
+                            activeOpacity={0.85}
+                            onPress={() => router.replace("/")}
+                            className="bg-emerald-500 py-4 rounded-2xl items-center mx-6"
                         >
-                            <Text className="text-white dark:text-black text-center font-bold text-lg">
+                            <Text className="text-white text-lg font-bold">
                                 На головну
                             </Text>
-                        </Pressable>
-                    </Link>
-
-                    <View className="flex-row justify-center mt-8">
-                        <Link href=".." asChild>
-                            <Pressable>
-                                <Text className="text-gray-500 dark:text-gray-400 font-medium text-base">
-                                    Повернутись назад
-                                </Text>
-                            </Pressable>
-                        </Link>
-                    </View>
-
-                </View>
+                        </TouchableOpacity>
+                    </ScrollView>
+                </KeyboardAvoidingView>
             </SafeAreaView>
-        </>
+        </View>
     );
 }

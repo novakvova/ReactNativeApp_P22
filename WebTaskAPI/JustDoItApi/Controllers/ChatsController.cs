@@ -17,6 +17,13 @@ public class ChatsController(IChatService chatService) : ControllerBase
         return Ok(chatId);
     }
 
+    [HttpPut("edit")]
+    public async Task<IActionResult> EditChat([FromBody] ChatEditModel model)
+    {
+        await chatService.EditChatAsync(model);
+        return Ok();
+    }
+
     [HttpGet("types")]
     public async Task<IActionResult> GetChatTypes()
     {
@@ -24,17 +31,40 @@ public class ChatsController(IChatService chatService) : ControllerBase
         return Ok(types);
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetUserChats()
+    [HttpGet("users")]
+    public async Task<IActionResult> GetUsers([FromQuery] UserSearchModel model)
     {
-        var chats = await chatService.GetUserChatsAsync();
+        var users = await chatService.GetAllUsersAsync(model);
+        return Ok(users);
+    }
+
+    [HttpGet("my")]
+    public async Task<IActionResult> GetMyChats()
+    {
+        var chats = await chatService.GetMyChatsAsync();
         return Ok(chats);
     }
 
-    [HttpGet("{chatId:long}/messages")]
-    public async Task<IActionResult> GetChatMessages([FromRoute] long chatId)
+    [HttpGet("{chatId}/messages")]
+    public async Task<IActionResult> GetChatMessages(long chatId)
     {
         var messages = await chatService.GetChatMessagesAsync(chatId);
         return Ok(messages);
+    }
+
+    [HttpGet("am-i-admin")]
+    public async Task<IActionResult> AmIAdmin([FromQuery] long chatId)
+    {
+        var isAdmin = await chatService.AmIAdminAsync(chatId);
+        return Ok(isAdmin);
+    }
+
+    [HttpPost("invite-link")]
+    public IActionResult GenerateInvite([FromBody] InviteRequest request)
+    {
+        var tokenService = new InviteTokenService();
+        var token = tokenService.Generate(request.ChatId);
+        var link = $"my-android://chat/invite?token={Uri.EscapeDataString(token)}";
+        return Ok(new { link });
     }
 }

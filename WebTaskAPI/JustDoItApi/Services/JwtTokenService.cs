@@ -7,8 +7,8 @@ using System.Security.Claims;
 
 namespace JustDoItApi.Services;
 
-public class JwtTokenService(IConfiguration configuration,
-    UserManager<UserEntity> userManager) : IJwtTokenService
+public class JWTTokenService(IConfiguration configuration,
+    UserManager<UserEntity> userManager) : IJWTTokenService
 {
     public async Task<string> CreateTokenAsync(UserEntity user)
     {
@@ -17,7 +17,6 @@ public class JwtTokenService(IConfiguration configuration,
         var claims = new List<Claim>
         {
             new Claim("email", user.Email ?? ""),
-            new Claim("id", user.Id.ToString()),
             new Claim("name", $"{user.FirstName} {user.LastName}"),
             new Claim("image", user.Image != null? user.Image : "")
         };

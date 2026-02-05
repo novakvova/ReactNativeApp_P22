@@ -3,9 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JustDoItApi.Entities.Chat;
-/// <summary>
-/// повідомлення в чаті - хто відправив, в який чат, текст повідомлення, час відправки, чи є вкладення
-/// </summary>
+
 [Table("tbl_chat_messages")]
 public class ChatMessageEntity : BaseEntity<long>
 {
@@ -33,3 +31,4 @@ public class ChatMessageEntity : BaseEntity<long>
 
     public bool IsEdited { get; set; } = false;
 }
+

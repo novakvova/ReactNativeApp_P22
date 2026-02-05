@@ -1,4 +1,4 @@
-export default interface IImageFile {
+export  interface IImageFile {
     uri: string;
     name: string;
     type: string;

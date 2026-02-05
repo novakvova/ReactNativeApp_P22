@@ -1,48 +1,54 @@
-п»їusing JustDoItApi.Interfaces;
+using JustDoItApi.Interfaces;
 using JustDoItApi.Models.Auth;
+using JustDoItApi.Models.Zadachi;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-namespace JustDoItApi.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class AuthController(IAuthService authService) : ControllerBase
+namespace JustDoItApi.Controllers
 {
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginModel model)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AuthController (IAuthService authService) : ControllerBase
     {
-        string result = await authService.LoginAsync(model);
-        if (string.IsNullOrEmpty(result))
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            return BadRequest(new
-            {
-                Status = 400,
-                IsValid = false,
-                Errors = new { Email = "РќРµРІС–СЂРЅРёР№ Р»РѕРіС–РЅ Р°Р±Рѕ РїР°СЂРѕР»СЊ" }
-            });
-        }
-        return Ok(new
-        {
-            Token = result
-        });
-    }
+            string result = await authService.LoginAsync(model);
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register([FromForm] RegisterModel model)
-    {
-        string result = await authService.RegisterAsync(model);
-        if (string.IsNullOrEmpty(result))
-        {
-            return BadRequest(new
+            if (string.IsNullOrEmpty(result))
             {
-                Status = 400,
-                IsValid = false,
-                Errors = new { Email = "Р©РѕСЃСЊ РїС–С€Р»Рѕ РЅРµ С‚Р°Рє" }
+                return BadRequest(new
+                {
+                    Status = 400,
+                    IsValid = false,
+                    Errors = new { Email = "Невірний логін або пароль" }
+                });
+            }
+
+            return Ok(new
+            {
+                Token = result
             });
         }
-        return Ok(new
+
+        [HttpPost("register")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Register([FromForm] RegisterModel model)
         {
-            Token = result
-        });
+            string result = await authService.RegisterAsync(model);
+            if (string.IsNullOrEmpty(result))
+            {
+                return BadRequest(new
+                {
+                    Status = 400,
+                    IsValid = false,
+                    Errors = new { Email = "Помилка реєстрації" }
+                });
+            }
+            return Ok(new
+            {
+                Token = result
+            });
+        }
     }
 }

@@ -1,19 +1,24 @@
-namespace JustDoItApi.Models.Auth;
-
+﻿namespace JustDoItApi.Models.Auth;
 
 /// <summary>
-/// Json - модель для входа користувача
+/// Json - модель для входу користувача
 /// </summary>
 public class LoginModel
 {
     /// <summary>
-    /// Електронна пошта користувача
+    /// Email
     /// </summary>
-    /// <example>admin@example.com</example>
+    /// <example>
+    /// admin@example.com
+    /// </example>
     public string Email { get; set; } = string.Empty;
+
     /// <summary>
-    /// Пароль користувача
+    /// Password
     /// </summary>
-    /// <example>Admin123!</example>
+    /// <example>
+    /// Admin123!
+    /// </example>
+
     public string Password { get; set; } = string.Empty;
 }

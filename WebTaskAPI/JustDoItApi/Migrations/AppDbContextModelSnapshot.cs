@@ -502,7 +502,7 @@ namespace JustDoItApi.Migrations
             modelBuilder.Entity("JustDoItApi.Entities.ZadachaEntity", b =>
                 {
                     b.HasOne("JustDoItApi.Entities.Identity.UserEntity", "User")
-                        .WithMany("Zadachas")
+                        .WithMany("Zadachi")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -578,7 +578,7 @@ namespace JustDoItApi.Migrations
 
                     b.Navigation("UserRoles");
 
-                    b.Navigation("Zadachas");
+                    b.Navigation("Zadachi");
                 });
 #pragma warning restore 612, 618
         }

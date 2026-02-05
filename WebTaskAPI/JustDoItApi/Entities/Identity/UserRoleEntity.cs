@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace JustDoItApi.Entities.Identity
+namespace JustDoItApi.Entities.Identity;
+
+public class UserRoleEntity : IdentityUserRole<long>
 {
-    public class UserRoleEntity : IdentityUserRole<long>
-    {
-        public virtual UserEntity? User { get; set; }
-        public virtual RoleEntity? Role { get; set; }
-    }
+    public virtual UserEntity? User { get; set; }
+    public virtual RoleEntity? Role { get; set; }
 }

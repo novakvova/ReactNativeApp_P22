@@ -3,9 +3,6 @@
 # dependencies
 node_modules/
 
-.idea
-.vscode
-
 # Expo
 .expo/
 dist/
@@ -28,6 +25,7 @@ expo-env.d.ts
 npm-debug.*
 yarn-debug.*
 yarn-error.*
+package-lock.json
 
 # macOS
 .DS_Store

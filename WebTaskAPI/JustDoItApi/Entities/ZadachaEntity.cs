@@ -1,4 +1,4 @@
-using JustDoItApi.Entities.Identity;
+﻿using JustDoItApi.Entities.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,4 +16,5 @@ public class ZadachaEntity : BaseEntity<long>
     [ForeignKey(nameof(User))]
     public long UserId { get; set; }
     public UserEntity? User { get; set; }
+
 }

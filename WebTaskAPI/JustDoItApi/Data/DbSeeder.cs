@@ -6,7 +6,6 @@ using JustDoItApi.Interfaces;
 using JustDoItApi.Models.Seeder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 using System.Text.Json;
 
 namespace JustDoItApi.Data;
@@ -96,6 +95,5 @@ public static class DbSeeder
             context.ChatTypes.AddRange(types);
             await context.SaveChangesAsync();
         }
-
     }
 }

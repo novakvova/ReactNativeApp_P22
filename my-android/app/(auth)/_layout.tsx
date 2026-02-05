@@ -1,7 +1,12 @@
-import { Stack } from "expo-router";
+import { View } from "react-native";
+import { Slot } from "expo-router";
+import { AuthTabs } from "../../components/auth/AuthTabs";
 
 export default function AuthLayout() {
     return (
-        <Stack screenOptions={{ headerShown: false }} />
+        <View className="flex-1">
+            <Slot />
+            <AuthTabs />
+        </View>
     );
 }

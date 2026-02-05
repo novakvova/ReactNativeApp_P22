@@ -23,7 +23,6 @@ public class AppDbContext : IdentityDbContext<
     }
 
     public DbSet<ZadachaEntity> Zadachi { get; set; }
-
     public DbSet<ChatEntity> Chats { get; set; }
     public DbSet<ChatTypeEntity> ChatTypes { get; set; }
     public DbSet<ChatMessageEntity> ChatMessages { get; set; }

@@ -1,7 +1,6 @@
-namespace JustDoItApi.Interfaces
+﻿namespace JustDoItApi.Interfaces;
+
+public interface IIdentityService
 {
-    public interface IIdentityService
-    {
-        Task<long> GetUserIdAsync();
-    }
+    Task<long> GetUserIdAsync();
 }
