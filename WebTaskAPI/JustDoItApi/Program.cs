@@ -46,14 +46,13 @@ builder.Services.AddOpenApi(options =>
 
         document.SetReferenceHostDocument();
 
-        document.Servers = new List<OpenApiServer>
-        {
+        document.Servers = [
             new OpenApiServer
             {
-                Url = builder.Configuration["ServerRunUrl"],
-                Description = "Bolto server"
+                Url = builder.Configuration["ServerRunUrl"]
             }
-        };
+        ];
+
         return Task.CompletedTask;
     });
 });

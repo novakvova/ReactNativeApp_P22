@@ -1,9 +1,17 @@
 @echo off
 
-REM ==== API ====
-docker build -t bolto-api .
-docker tag bolto-api:latest novakvova/bolto-api:latest
-docker push novakvova/bolto-api:latest
+echo Docker login...
+docker login
 
-echo DONE
+echo Building Docker image api...
+docker build -t task-api . 
+
+echo Tagging Docker image api...
+docker tag task-api:latest pedro007salo/task-api:latest
+
+echo Pushing Docker image api to repository...
+docker push pedro007salo/task-api:latest
+
+echo Done ---api---!
 pause
+ 
