@@ -11,7 +11,8 @@ public class AuthService(
     UserManager<UserEntity> userManager,
     RoleManager<RoleEntity> roleManager,
     IMapper mapper,
-    IImageService imageService
+    IImageService imageService,
+    IIdentityService identityService
 ) : IAuthService
 {
     private const string DefaultRole = "User";
@@ -55,6 +56,27 @@ public class AuthService(
         }
 
         await userManager.AddToRoleAsync(user, DefaultRole);
+        return await tokenService.CreateTokenAsync(user);
+    }
+
+    public async Task<string> EditProfileAsync(EditProfileModel model)
+    {
+        var userId = await identityService.GetUserIdAsync();
+
+        var user = await userManager.FindByIdAsync(Convert.ToString(userId));
+
+        if (user == null)
+            throw new Exception("User not found");
+        mapper.Map(model, user);
+        if (model.ImageFile != null)
+        {
+            if (!string.IsNullOrEmpty(user.Image))
+                await imageService.DeleteImageAsync(user.Image);
+
+            user.Image = await imageService.SaveImageAsync(model.ImageFile);
+        }
+        await userManager.UpdateAsync(user);
+
         return await tokenService.CreateTokenAsync(user);
     }
 }

@@ -1,6 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { jwtDecode } from "jwt-decode";
 import { IUserIdentity } from "@/types/auth/IUserIdentity";
+import storage from "@/store/sorages/tokenStorage";
 
 interface AuthState {
     user: IUserIdentity | null;
@@ -43,6 +44,7 @@ const authSlice = createSlice({
         },
         logout: (state) => {
             state.user = null;
+            storage.removeItem("token");
         },
     },
 });
